@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpyw811v60hei"]
+
+[ext_resource type="Texture2D" uid="uid://cymnql4of0twx" path="res://assets/sprites/background.png" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://n251xrrfrftj" path="res://scenes/asteroids/big_asteroid.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://u57j8cw0hyvx" path="res://scenes/player/player.tscn" id="3_k2fmo"]
+[ext_resource type="Script" uid="uid://ou6r4eam6pyj" path="res://scenes/main/asteroid_spawner.gd" id="3_l3cfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2fmo"]
+size = Vector2(1167, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3cfh"]
+size = Vector2(674, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q06x"]
+size = Vector2(677.5, 20)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(634, 239)
+texture = ExtResource("1_hyk8p")
+
+[node name="Player" parent="." instance=ExtResource("3_k2fmo")]
+position = Vector2(57, 342)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(574, -10)
+shape = SubResource("RectangleShape2D_k2fmo")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(576, 659)
+shape = SubResource("RectangleShape2D_k2fmo")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(0, 330)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_l3cfh")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(1158, 327)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_6q06x")
+
+[node name="AsteroidSpawner" type="Marker2D" parent="."]
+position = Vector2(1313, 325)
+script = ExtResource("3_l3cfh")
+big_asteriod_scene = ExtResource("2_iuonh")
+max_y = 800.0
+
+[node name="Timer" type="Timer" parent="AsteroidSpawner"]
+autostart = true
+
+[connection signal="timeout" from="AsteroidSpawner/Timer" to="AsteroidSpawner" method="_on_timer_timeout"]
