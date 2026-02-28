@@ -9,7 +9,10 @@ radius = 77.00649
 [node name="BigAsteroid" type="Area2D"]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_ogut5")
-speed = 250.0
+min_speed = 300.0
+max_speed = 600.0
+min_rotation_speed = -180.0
+max_rotation_speed = 200.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
