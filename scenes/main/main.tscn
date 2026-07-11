@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpyw811v60hei"]
+[gd_scene format=3 uid="uid://bpyw811v60hei"]
 
 [ext_resource type="Texture2D" uid="uid://cymnql4of0twx" path="res://assets/sprites/background.png" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://n251xrrfrftj" path="res://scenes/asteroids/big_asteroid.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://mlqmrplm7cwf" path="res://scenes/laser/laser.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://u57j8cw0hyvx" path="res://scenes/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="Script" uid="uid://ou6r4eam6pyj" path="res://scenes/main/asteroid_spawner.gd" id="3_l3cfh"]
 
@@ -14,52 +15,63 @@ size = Vector2(674, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6q06x"]
 size = Vector2(677.5, 20)
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1443187427]
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=752446404]
 position = Vector2(634, 239)
 texture = ExtResource("1_hyk8p")
 
-[node name="Player" parent="." instance=ExtResource("3_k2fmo")]
+[node name="Player" parent="." unique_id=138844015 instance=ExtResource("3_k2fmo")]
 position = Vector2(57, 342)
+laser_scene = ExtResource("3_6q06x")
+speed = 450.0
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="SpriteD2" type="Sprite2D" parent="Player" unique_id=229484756]
 
-[node name="TopWall" type="StaticBody2D" parent="Walls"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Player" unique_id=157654610]
+polygon = PackedVector2Array(-29, -57, 45, -4, 44, 5, -24, 57, -44, 57, -41, -60)
+
+[node name="Laser" parent="." unique_id=1966775559 instance=ExtResource("3_6q06x")]
+position = Vector2(57, 342)
+speed = 600.0
+
+[node name="Walls" type="Node2D" parent="." unique_id=721851750]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls" unique_id=2130380024]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall" unique_id=1369298313]
 position = Vector2(574, -10)
 shape = SubResource("RectangleShape2D_k2fmo")
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+[node name="BottomWall" type="StaticBody2D" parent="Walls" unique_id=1117581998]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall" unique_id=302304787]
 position = Vector2(576, 659)
 shape = SubResource("RectangleShape2D_k2fmo")
 
-[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+[node name="LeftWall" type="StaticBody2D" parent="Walls" unique_id=2012258001]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall" unique_id=516739420]
 position = Vector2(0, 330)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_l3cfh")
 
-[node name="RightWall" type="StaticBody2D" parent="Walls"]
+[node name="RightWall" type="StaticBody2D" parent="Walls" unique_id=1090763450]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" unique_id=2113725686]
 position = Vector2(1158, 327)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6q06x")
 
-[node name="AsteroidSpawner" type="Marker2D" parent="."]
+[node name="AsteroidSpawner" type="Marker2D" parent="." unique_id=1039564259]
 position = Vector2(1313, 325)
 script = ExtResource("3_l3cfh")
 big_asteriod_scene = ExtResource("2_iuonh")
 max_y = 800.0
 
-[node name="Timer" type="Timer" parent="AsteroidSpawner"]
+[node name="Timer" type="Timer" parent="AsteroidSpawner" unique_id=1670835186]
 autostart = true
 
 [connection signal="timeout" from="AsteroidSpawner/Timer" to="AsteroidSpawner" method="_on_timer_timeout"]
