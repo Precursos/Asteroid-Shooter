@@ -21,3 +21,7 @@ func _process(delta):
 	position.x -= random_speed * delta
 	#Si en vez de poner un "+" se pone un "-" la rotación se invierte
 	rotation_degrees += random_speed_rotation * delta
+
+
+func _on_area_entered(area: Area2D) -> void:
+	queue_free()

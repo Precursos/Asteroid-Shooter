@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwe2xs6fen1no"]
+[gd_scene format=3 uid="uid://bwe2xs6fen1no"]
 
 [ext_resource type="Script" uid="uid://brmgrk5eb7kvp" path="res://scenes/asteroids/big_asteroid.gd" id="1_g7dso"]
 [ext_resource type="Texture2D" uid="uid://bp2uar47q8fg4" path="res://assets/sprites/rock-medium.png" id="1_hlh36"]
@@ -6,12 +6,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nvu7p"]
 radius = 50.039986
 
-[node name="MediumAsteroid" type="Area2D"]
+[node name="MediumAsteroid" type="Area2D" unique_id=348384136]
 script = ExtResource("1_g7dso")
-speed = 250.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695706937]
 texture = ExtResource("1_hlh36")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=348116057]
 shape = SubResource("CircleShape2D_nvu7p")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -19,6 +19,10 @@ run/main_scene="uid://bpyw811v60hei"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+asteroids=""
+
 [input]
 
 move_up={

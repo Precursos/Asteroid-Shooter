@@ -22,6 +22,7 @@ position = Vector2(634, 239)
 texture = ExtResource("1_hyk8p")
 
 [node name="Player" parent="." unique_id=138844015 instance=ExtResource("3_k2fmo")]
+z_index = 1
 position = Vector2(57, 342)
 laser_scene = ExtResource("3_6q06x")
 speed = 450.0
@@ -33,7 +34,7 @@ polygon = PackedVector2Array(-29, -57, 45, -4, 44, 5, -24, 57, -44, 57, -41, -60
 
 [node name="Laser" parent="." unique_id=1966775559 instance=ExtResource("3_6q06x")]
 position = Vector2(57, 342)
-speed = 600.0
+speed = 1000.0
 
 [node name="Walls" type="Node2D" parent="." unique_id=721851750]
 
